@@ -7,9 +7,27 @@ This is truly an experiment. You've been warned.
 
 ## Getting Started
 
+At this time, Bowie requires Node.js v6 or higher. I may add
+a Babel / Broswerify build at some point, but I'm trying to
+keep it simple for now.
+
 0. `npm install bowie`
 0. `var Bowie = require("bowie");`
 0. `var model = new Bowie.Model();`
+
+From here, you can see code examples below.
+
+## Running Tests
+
+If you want to run the tests, follow these steps:
+
+0. Clone the bowie repository
+0. `npm install` from the project root folder
+0. `npm install -g grunt-cli` if you don't already have grunt-cli
+0. `grunt` to start the watcher / runner, or `grunt-specs` to just run the tests
+
+If you run `grunt` with the watcher, any time you save a file in the `lib` or
+`specs` folder, the specs will run again.
 
 ## Model Attributes
 
