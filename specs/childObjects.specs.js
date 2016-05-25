@@ -43,4 +43,22 @@ describe("child objects", function(){
     });
   });
 
+  describe("when getting .toJSON of a model with child objects", function(){
+    var json;
+
+    beforeEach(function(){
+      var m = new Bowie.Model();
+
+      m.foo = {
+        bar: "baz"
+      };
+
+      json = m.toJSON();
+    });
+
+    it("should include the child data", function(){
+      expect(json.foo.bar).toBe("baz");
+    });
+  });
+
 });
