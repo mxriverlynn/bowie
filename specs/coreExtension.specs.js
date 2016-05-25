@@ -29,11 +29,12 @@ describe("core extension", function(){
     });
   });
 
-  describe("when extending from Model and adding to the prototype", function(){
+  describe("when extending from Model and adding to the prototype and instance", function(){
     var M = Bowie.Model.extend();
 
-    var fn, created;
+    var fn, created, baz;
     beforeEach(function(){
+      baz = td.function("baz");
       created = td.function("created");
       fn = td.function("foo");
       M.prototype.foo = fn;
@@ -43,10 +44,15 @@ describe("core extension", function(){
       m.on("create:bar", created);
       
       m.foo();
+
+      m.baz = baz;
       m.bar = "baz";
+
+      m.baz();
     });
 
     it("should be able to execute the function, as expected", function(){
+      td.verify(baz());
       td.verify(fn());
     });
 
