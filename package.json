@@ -1,0 +1,24 @@
+{
+  "name": "bowie",
+  "version": "0.0.1",
+  "description": "an experiment in beautiful models built on the latest ES6 features",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derickbailey/bowie.git"
+  },
+  "keywords": [
+    "model",
+    "es6",
+    "data-binding"
+  ],
+  "author": "Derick Bailey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derickbailey/bowie/issues"
+  },
+  "homepage": "https://github.com/derickbailey/bowie#readme"
+}
