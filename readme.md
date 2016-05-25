@@ -36,6 +36,9 @@ m.on("create:foo", function(value){
 m.on("change:foo", function(value){
   // the 'foo' attribute was changed
 });
+
+// make the assignment, and watch the events trigger
+m.foo = "bar";
 ```
 
 Note that the `create` event only fires when the attribute is
