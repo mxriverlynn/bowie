@@ -20,5 +20,14 @@
   "bugs": {
     "url": "https://github.com/derickbailey/bowie/issues"
   },
-  "homepage": "https://github.com/derickbailey/bowie#readme"
+  "homepage": "https://github.com/derickbailey/bowie#readme",
+  "devDependencies": {
+    "grunt": "1.0.1",
+    "grunt-contrib-jshint": "1.0.0",
+    "grunt-contrib-watch": "1.0.0",
+    "grunt-jasmine-nodejs": "1.5.3"
+  },
+  "engines": {
+    "node": ">6.0.0"
+  }
 }
