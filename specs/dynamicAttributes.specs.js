@@ -29,4 +29,22 @@ describe("dynamic attributes", function(){
     });
   });
 
+  describe("when getting the toJSON representation of the model", function(){
+    var json;
+
+    beforeEach(function(){
+      var m = new Bowie.Model();
+      m.foo = "bar";
+      m.baz = "quux";
+
+      json = m.toJSON();
+    });
+
+    it("should include all of the dynamic attributes", function(){
+      expect(json.foo).toBe("bar");
+      expect(json.baz).toBe("quux");
+    });
+
+  });
+
 });
