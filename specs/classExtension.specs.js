@@ -3,13 +3,20 @@ var Bowie = require("../lib");
 describe("class extending bowie model", function(){
 
   describe("when extending a Bowie Model with a class", function(){
-    class Foo extends Bowie.Model {}
+    class Foo extends Bowie.Model {
+      constructor(data){
+        super(data);
+      }
+    }
 
-    var createSpy;
+    var f, createSpy;
 
     beforeEach(function(){
       createSpy = jasmine.createSpy("create:bar");
-      var f = new Foo();
+
+      f = new Foo({
+        baz: "quux"
+      });
 
       f.on("create:bar", createSpy);
 
@@ -18,6 +25,10 @@ describe("class extending bowie model", function(){
 
     it("should handle dynamic attributes", function(){
       expect(createSpy).toHaveBeenCalledWith("baz");
+    });
+
+    it("should handle data passed in through constructor", function(){
+      expect(f.baz).toBe("quux");
     });
   });
 

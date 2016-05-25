@@ -143,7 +143,7 @@ m.foo = function(){
 m.foo(); // => "baz WUUUUT"
 ```
 
-## Class Extension and Methods
+## Class Extension
 
 Bowie supports full `class` exension, including the ability to provide
 methods on the class.
@@ -152,16 +152,21 @@ methods on the class.
 class Foo extends Bowie.Model {
   
   doStuff(baz){
-    return this.bar + baz
+    return this.bar + baz + this.quux;
   }
 
 }
 
-var f = new Foo();
+// create the model with a base set of data
+var f = new Foo({
+  bar: 1
+});
 
-f.bar = 1;
+// add more data attributes
+f.quux = 3;
 
-f.doStuff(2); // => 3
+// process the data
+f.doStuff(2); // => 6
 ```
 
 ## Legal Junk
