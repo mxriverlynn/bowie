@@ -1,6 +1,6 @@
 var Bowie = require("../lib");
 
-describe("model methods", function(){
+describe("methods", function(){
 
   describe("when a method is added to a model, and then called", function(){
     var result;

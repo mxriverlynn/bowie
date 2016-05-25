@@ -4,11 +4,7 @@ var Bowie = require("../lib");
 describe("class extending bowie model", function(){
 
   describe("when extending a Bowie Model with a class", function(){
-    class Foo extends Bowie.Model {
-      constructor(data){
-        super(data);
-      }
-    }
+    class Foo extends Bowie.Model { }
 
     var f, created;
 
