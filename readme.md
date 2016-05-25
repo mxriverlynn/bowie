@@ -11,7 +11,7 @@ This is truly an experiment. You've been warned.
 0. `var Bowie = require("bowie");`
 0. `var model = new Bowie.Model();`
 
-## Attributes
+## Model Attributes
 
 Bowie models use ES6 proxies to create a dynamic attribute setup.
 You can add any attribute you wish, by assigning the attribute of the 
@@ -44,6 +44,30 @@ m.foo = "bar";
 Note that the `create` event only fires when the attribute is
 first created. The `change` event fires when the attribute is
 created, or any time it is changed.
+
+### Model toJSON
+
+Bowie Models store data attributes in a private part of the
+model instance, using ES6 Symbols. 
+
+When calling `m.toJSON()`, the attributes from this private
+storage are serialized into a JSON string then re-parsed into
+a JavaScript object literal. 
+
+```js
+var m = new Bowie.Model();
+
+m.foo = "bar";
+m.baz = "quux";
+
+var json = m.toJSON();
+
+console.log(json); // => { foo: "bar", baz: "quux" }
+```
+
+The process of serializing / deserializing, when calling `.toJSON` 
+ensures a clean copy of all attributes, with no direct
+reference back to the underlying attribute storage.
 
 ## Legal Junk
 
