@@ -150,7 +150,14 @@ methods on the class.
 
 ```js
 class Foo extends Bowie.Model {
+
+  // pass constructor provided attributes
+  // to the Model constructor function
+  constructor(data){
+    super(data);
+  }
   
+  // add a method that uses data from the model
   doStuff(baz){
     return this.bar + baz + this.quux;
   }
