@@ -1,3 +1,4 @@
+var td = require("testdouble");
 var Bowie = require("../lib");
 
 describe("attributes", function(){
@@ -8,24 +9,23 @@ describe("attributes", function(){
 
     beforeEach(function(){
       var model = new Bowie.Model();
+      
+      created = td.function("created");
+      changed = td.function("changed");
 
-      model.on("create:testAttribute", function(value){
-        created = value;
-      });
+      model.on("create:testAttribute", created);
 
-      model.on("change:testAttribute", function(value){
-        changed = value;
-      });
+      model.on("change:testAttribute", changed);
 
       model.testAttribute = assignedVal;
     });
 
     it("should trigger a 'create' event for the attribute", function(){
-      expect(created).toBe(assignedVal);
+      td.verify(created(assignedVal));
     });
 
     it("should trigger a 'change' event for the attribute", function(){
-      expect(changed).toBe(assignedVal);
+      td.verify(changed(assignedVal));
     });
   });
 

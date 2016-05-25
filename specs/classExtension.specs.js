@@ -1,3 +1,4 @@
+var td = require("testdouble");
 var Bowie = require("../lib");
 
 describe("class extending bowie model", function(){
@@ -9,22 +10,22 @@ describe("class extending bowie model", function(){
       }
     }
 
-    var f, createSpy;
+    var f, created;
 
     beforeEach(function(){
-      createSpy = jasmine.createSpy("create:bar");
+      created = td.function("create:bar");
 
       f = new Foo({
         baz: "quux"
       });
 
-      f.on("create:bar", createSpy);
+      f.on("create:bar", created);
 
       f.bar = "baz";
     });
 
     it("should handle dynamic attributes", function(){
-      expect(createSpy).toHaveBeenCalledWith("baz");
+      td.verify(created("baz"));
     });
 
     it("should handle data passed in through constructor", function(){

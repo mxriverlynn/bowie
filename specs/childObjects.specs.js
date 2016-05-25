@@ -1,3 +1,4 @@
+var td = require("testdouble");
 var Bowie = require("../lib");
 
 describe("child objects", function(){
@@ -23,7 +24,7 @@ describe("child objects", function(){
   });
 
   describe("when changing an attribute on a wrapped child object", function(){
-    var changeSpy;
+    var change;
 
     beforeEach(function(){
       var m = new Bowie.Model();
@@ -32,14 +33,14 @@ describe("child objects", function(){
         baz: "quux"
       };
 
-      changeSpy = jasmine.createSpy("change:baz");
-      m.foo.on("change:baz", changeSpy);
+      change = td.function("change:baz");
+      m.foo.on("change:baz", change);
 
       m.foo.baz = "a change";
     });
 
     it("should trigger the child's change event", function(){
-      expect(changeSpy).toHaveBeenCalledWith("a change");
+      td.verify(change("a change"));
     });
   });
 
