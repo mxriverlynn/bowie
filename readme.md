@@ -87,6 +87,19 @@ parent.child.on("change:baz", function(value){
 parent.child.baz = "fun"; // => console logs "new value: fun"
 ```
 
+### Assign Attribute On Creation
+
+Pass an object literal into the Bowie.Model constructor and the data
+will be stored as the model's attributes.
+
+```js
+var m = new Model({
+  foo: "bar"
+});
+
+console.log(m.foo) // => "bar"
+```
+
 ### Model toJSON
 
 Bowie Models store data attributes in a private part of the
@@ -107,9 +120,49 @@ var json = m.toJSON();
 console.log(json); // => { foo: "bar", baz: "quux" }
 ```
 
-The process of serializing / deserializing, when calling `.toJSON` 
+The process of serializing when calling `.toJSON` 
 ensures a clean copy of all attributes, with no direct
 reference back to the underlying attribute storage.
+
+Child models will also be included in the `.toJSON` output.
+
+## Dynamic Methods
+
+You can add methods directly to any Model instance - whether it extended
+as a class (see below), or just created a new Bowie.Model directly.
+
+```js
+var m = new Bowie.Model({
+  bar: "baz"
+});
+
+m.foo = function(){
+  return this.bar + " WUUUUT";
+};
+
+m.foo(); // => "baz WUUUUT"
+```
+
+## Class Extension and Methods
+
+Bowie supports full `class` exension, including the ability to provide
+methods on the class.
+
+```js
+class Foo extends Bowie.Model {
+  
+  doStuff(baz){
+    return this.bar + baz
+  }
+
+}
+
+var f = new Foo();
+
+f.bar = 1;
+
+f.doStuff(2); // => 3
+```
 
 ## Legal Junk
 

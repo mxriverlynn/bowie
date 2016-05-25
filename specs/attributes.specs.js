@@ -1,6 +1,6 @@
 var Bowie = require("../lib");
 
-describe("dynamic attributes", function(){
+describe("attributes", function(){
 
   describe("when assigning a value to anon-existent attribute, in a model", function(){
     var created, changed;
@@ -45,6 +45,20 @@ describe("dynamic attributes", function(){
       expect(json.baz).toBe("quux");
     });
 
+  });
+
+  describe("when passing an object with data to the model constructor", function(){
+    var m;
+
+    beforeEach(function(){
+      m = new Bowie.Model({
+        foo: "bar"
+      });
+    });
+
+    it("should provide the data in the model's attributes", function(){
+      expect(m.foo).toBe("bar");
+    });
   });
 
 });
