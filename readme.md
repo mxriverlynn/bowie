@@ -45,6 +45,30 @@ Note that the `create` event only fires when the attribute is
 first created. The `change` event fires when the attribute is
 created, or any time it is changed.
 
+### Child Objects
+
+Bowie models have some built-in support for child models, directly.
+For example, if you assign an object value to an attribute, Bowie
+will check to see if it is already a Model instance. If not, it will
+wrap the value in a Model instance for you.
+
+```js
+var parent = new Bowie.Model();
+
+var child = {
+  baz: "quux"
+};
+
+// child gets wrapped, here
+parent.child = child;
+
+parent.child.on("change:baz", function(value){
+  console.log("new value:", value);
+});
+
+parent.child.baz = "fun"; // => console logs "new value: fun"
+```
+
 ### Model toJSON
 
 Bowie Models store data attributes in a private part of the

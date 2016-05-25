@@ -16,6 +16,7 @@
   "latedef": false,
   "esnext": true,
   "globals": {
+    "jasmine": true,
     "beforeAll": true,
     "afterAll": true,
     "process": true,
